@@ -467,6 +467,10 @@ function! AutoPairsInit()
   endfor
 
   for key in split(b:AutoPairsMoveCharacter, '\s*')
+    if key == '"'
+      continue
+    endif
+
     let escaped_key = substitute(key, "'", "''", 'g')
     execute 'inoremap <silent> <buffer> <M-'.key."> <C-R>=AutoPairsMoveCharacter('".escaped_key."')<CR>"
   endfor
